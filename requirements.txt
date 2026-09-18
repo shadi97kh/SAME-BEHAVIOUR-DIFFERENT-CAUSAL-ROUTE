@@ -1,0 +1,11 @@
+numpy
+pandas
+matplotlib
+scipy
+scikit-learn
+torch
+torchvision
+transformers
+datasets
+accelerate
+# Some Mamba notebooks additionally require GPU-compatible mamba-ssm / causal-conv1d builds.

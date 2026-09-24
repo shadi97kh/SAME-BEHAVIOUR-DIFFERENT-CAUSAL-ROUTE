@@ -1,0 +1,12 @@
+{
+ "cond": "c32h1536",
+ "seed": 2,
+ "matched_arm": "late0.1",
+ "beta": null,
+ "target_share": 0.0785691274627347,
+ "ppl": 10.450043374731068,
+ "copy_acc": 0.6558061821219716,
+ "hard_acc": 0.5309698451507743,
+ "share_c": 0.0785691133247163,
+ "note": "exported from the paper run; beta and loss were not logged"
+}

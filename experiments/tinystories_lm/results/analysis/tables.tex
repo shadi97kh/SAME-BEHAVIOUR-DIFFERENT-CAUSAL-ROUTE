@@ -1,0 +1,58 @@
+\begin{table}[h]\centering\small
+\caption{\textbf{TinyStories viability screen} (seed 0). Viability is recurrent-only relative to the hybrid.}
+\label{tab:ts_screen}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lcccccccc}\toprule
+& \multicolumn{2}{c}{perplexity} & \multicolumn{2}{c}{copy acc.} & \multicolumn{3}{c}{viability} & free hybrid \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-8}
+ctx / $d_h$ & hybrid & rec.\ only & hybrid & rec.\ only & ppl & copy & hard & deletion $r$ \\ \midrule
+64 / 512 & 7.915 & 8.824 & 0.791 & 0.714 & 0.897 & 0.902 & 0.833 & 1.86 \\
+32 / 512 & 9.543 & 10.243 & 0.779 & 0.701 & 0.932 & 0.900 & 0.851 & 1.66 \\
+64 / 1536 & 7.334 & 7.858 & 0.805 & 0.739 & 0.933 & 0.918 & 0.864 & 1.51 \\
+32 / 1536 & 8.941 & 9.336 & 0.783 & 0.728 & 0.958 & 0.931 & 0.897 & 1.38 \\
+\bottomrule\end{tabular}}\end{table}
+
+\begin{table}[h]\centering\small
+\caption{\textbf{Late pricing on TinyStories} ($\lambda = 0.1$, 6k steps). Mean $\pm$ standard deviation where
+several seeds are available. Post-hoc: never arm's retrieval logits scaled to the late arm's share without training; its perplexity cost is relative to the late arm.}
+\label{tab:ts_steer}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lccccccc}\toprule
+ctx / $d_h$ & seeds & ppl cost & post-hoc ppl cost & $r$: never $\to$ late & $h$ & $h_{\text{copy}}$ & $h_{\text{hard}}$ \\ \midrule
+64 / 512 & 3 & $+2.2\%$ & $+36.7\%$ & $1.96 \to 1.51$ & $0.393 \pm 0.006$ & $0.087 \pm 0.050$ & $0.075 \pm 0.060$ \\
+32 / 512 & 1 & $+1.6\%$ & $+27.7\%$ & $1.68 \to 1.35$ & 0.415 & 0.095 & 0.069 \\
+64 / 1536 & 1 & $+1.4\%$ & $+22.3\%$ & $1.53 \to 1.34$ & 0.320 & 0.139 & 0.132 \\
+32 / 1536 & 3 & $+1.1\%$ & $+18.8\%$ & $1.42 \to 1.24$ & $0.393 \pm 0.025$ & $0.047 \pm 0.054$ & $0.034 \pm 0.051$ \\
+\bottomrule\end{tabular}}\end{table}
+
+\begin{table}[h]\centering\small
+\caption{\textbf{Per-seed TinyStories steering endpoints.}}
+\label{tab:ts_perseed}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lcccccccc}\toprule
+& & \multicolumn{3}{c}{perplexity} & & & & \\ \cmidrule(lr){3-5}
+ctx / $d_h$ & seed & never & late & post-hoc & $r$: never $\to$ late & $h$ & $h_{\text{copy}}$ & $h_{\text{hard}}$ \\ \midrule
+64 / 512 & 0 & 7.770 & 7.946 & 10.774 & $1.915 \to 1.478$ & 0.399 & 0.141 & 0.139 \\
+64 / 512 & 1 & 7.771 & 7.940 & 10.835 & $2.017 \to 1.530$ & 0.394 & 0.076 & 0.066 \\
+64 / 512 & 2 & 7.780 & 7.945 & 10.969 & $1.950 \to 1.507$ & 0.386 & 0.044 & 0.019 \\
+\midrule
+32 / 512 & 0 & 9.311 & 9.458 & 12.082 & $1.680 \to 1.355$ & 0.415 & 0.095 & 0.069 \\
+\midrule
+64 / 1536 & 0 & 7.187 & 7.289 & 8.911 & $1.533 \to 1.337$ & 0.320 & 0.139 & 0.132 \\
+\midrule
+32 / 1536 & 0 & 8.755 & 8.854 & 10.478 & $1.416 \to 1.227$ & 0.412 & 0.088 & 0.075 \\
+32 / 1536 & 1 & 8.691 & 8.764 & 10.520 & $1.434 \to 1.257$ & 0.365 & $-0.014$ & $-0.023$ \\
+32 / 1536 & 2 & 8.754 & 8.858 & 10.450 & $1.417 \to 1.232$ & 0.401 & 0.067 & 0.050 \\
+\bottomrule\end{tabular}}\end{table}
+
+\begin{table}[h]\centering\small
+\caption{\textbf{Route measurements before and after pricing} (means over available seeds).}
+\label{tab:ts_routes}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lcccccc}\toprule
+ctx / $d_h$ & share: never $\to$ late & $D_c$: never $\to$ late & copy: late / post-hoc & hard: late / post-hoc & deleted ppl: never $\to$ late & rec.\ only ppl \\ \midrule
+64 / 512 & $0.360 \to 0.123$ & $0.457 \to 0.358$ & 0.793 / 0.672 & 0.709 / 0.519 & $15.24 \to 11.96$ & 8.82 \\
+32 / 512 & $0.314 \to 0.104$ & $0.499 \to 0.396$ & 0.777 / 0.666 & 0.714 / 0.548 & $15.64 \to 12.81$ & 10.24 \\
+64 / 1536 & $0.279 \to 0.092$ & $0.385 \to 0.287$ & 0.797 / 0.681 & 0.719 / 0.532 & $11.02 \to 9.75$ & 7.86 \\
+32 / 1536 & $0.251 \to 0.079$ & $0.431 \to 0.365$ & 0.790 / 0.656 & 0.732 / 0.534 & $12.42 \to 10.93$ & 9.34 \\
+\bottomrule\end{tabular}}\end{table}

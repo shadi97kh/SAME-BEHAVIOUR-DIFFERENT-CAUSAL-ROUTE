@@ -1,0 +1,17 @@
+{
+ "_comment": "Numbers reported in Appendix R. Tolerances allow for GPU / library differences on a re-run.",
+ "tolerance": {"viability": 0.01, "h": 0.05, "ppl_cost": 0.01, "r": 0.05, "posthoc": 0.05},
+ "screen": {
+  "64/512":  {"viab_ppl": 0.897, "viab_copy": 0.902, "viab_hard": 0.833},
+  "32/512":  {"viab_ppl": 0.932, "viab_copy": 0.900, "viab_hard": 0.851},
+  "64/1536": {"viab_ppl": 0.933, "viab_copy": 0.918, "viab_hard": 0.864},
+  "32/1536": {"viab_ppl": 0.958, "viab_copy": 0.931, "viab_hard": 0.897}
+ },
+ "steering": {
+  "64/512":  {"h": 0.393, "ppl_cost": 0.022, "r_late": 1.505, "posthoc_vs_late": 0.367},
+  "32/512":  {"h": 0.415, "ppl_cost": 0.016, "r_late": 1.355, "posthoc_vs_late": 0.277},
+  "64/1536": {"h": 0.320, "ppl_cost": 0.014, "r_late": 1.337, "posthoc_vs_late": 0.223},
+  "32/1536": {"h": 0.393, "ppl_cost": 0.011, "r_late": 1.239, "posthoc_vs_late": 0.188}
+ },
+ "n_deletable": 0
+}

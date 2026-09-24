@@ -1,5 +1,12 @@
-# Appendix Q — pretrained WorM VSR
+# Appendix Q — pretrained WorM VSR route availability
 
-`worm_vsr_diagnostic.ipynb` is the current-paper diagnostic (available retrieval route but no load-bearing handover). `setup_reference_FIXED.ipynb` is included because the diagnostic imports the official WorM setup from it. File discovery was changed to prefer repo-local files and fall back to the original Drive paths; scientific logic was not changed.
+- `worm_vsr_diagnostic.ipynb` is the paper's diagnostic: a retrieval route is available over the
+  frozen pretrained representation but is never load-bearing, so resample-defined route ordering
+  becomes a free parameter while deletion stays free.
+- `worm_vsr_setup.ipynb` holds the official WorM setup that the diagnostic imports.
 
-The prospective positive-handover notebook is **not** the current paper result and is therefore used only as setup reference here. The human reference remains sealed and is not included.
+Both download the official WorM repository and pretrained checkpoints. Result discovery prefers
+repo-local files; set `RESULTS_DIR` (or `WORM_RESULT_DIR`) to relocate outputs. The scientific
+logic is unchanged from the supplied version.
+
+The human reference data that accompany the benchmark were never accessed and are not included.

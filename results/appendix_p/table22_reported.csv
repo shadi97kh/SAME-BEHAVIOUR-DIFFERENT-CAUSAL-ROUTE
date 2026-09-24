@@ -1,0 +1,13 @@
+# Reported values for the post-convergence steering comparison (symbolic selective recall, load 8, five seeds).
+# Source: transcribed from the paper's "Post-convergence steering comparison" table (Appendix P).
+# Provenance: the delayed-attention, weight-decay and L1-retrieval-penalty rows have NO code in this release;
+# these transcribed numbers are the only record of them. All other rows are reproducible from the notebooks
+# listed in docs/PAPER_CODE_MAP.md. "meets_criterion" = substantial retrieval reduction at final accuracy >= 0.99.
+method,code_in_release,accuracy,retrieval_share,meets_criterion,ood_delay,ood_interference
+hybrid_no_cost,yes,1.000,0.952,control,0.889,0.489
+delayed_attention,no,0.934,0.255,no,0.961,0.586
+retrieval_dropout_availability,yes,1.000,0.187,yes,0.996,0.383
+weight_decay,no,1.000,0.549,no,0.989,0.593
+l1_retrieval_penalty,no,1.000,0.638,no,0.857,0.460
+cram_style_adaptation,yes,0.988,0.685,no,0.932,0.678
+retrieval_price_ours,yes,1.000,0.057,yes,0.998,0.396

@@ -1,0 +1,6 @@
+# training outputs (checkpoints are large; logs of the paper runs live in results/)
+runs/
+*.pt
+*.part.pt
+__pycache__/
+.ipynb_checkpoints/

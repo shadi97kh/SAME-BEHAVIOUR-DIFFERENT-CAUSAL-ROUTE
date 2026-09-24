@@ -1,0 +1,7 @@
+# Paper runs: Python 3.12, 2x NVIDIA Tesla T4 (fp16 mixed precision).
+torch>=2.3          # torch.amp.GradScaler("cuda") API
+numpy
+pandas
+matplotlib
+datasets            # TinyStories download (roneneldan/TinyStories)
+transformers        # GPT-2 tokenizer

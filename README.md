@@ -1,53 +1,95 @@
-# Same Behaviour, Different Causal Route — ICLR 2027 code release
+# Same Behaviour, Different Causal Route
 
-Clean GitHub-ready release for the paper **“Same Behaviour, Different Causal Route: Post-Convergence Steering in Recurrent–Attention Hybrids.”**
+Code for **"Same Behaviour, Different Causal Route: Post-Convergence Steering in
+Recurrent–Attention Hybrids"** (ICLR 2027 submission, anonymous).
 
-The release separates paper experiments from exploratory pilots, removes notebook backup/debug clutter, encodes the final MNIST/CIFAR eight-seed runs directly, and cleans the large-scale notebook so the final load-dependent switch protocol is run once rather than through repeated correction cells.
+After a recurrent–attention hybrid has solved a task through its attention retrieval route, we
+price that route and ask whether causal reliance can move to recurrence without changing
+behaviour. It can, but only when the receiving route is independently capable of solving the
+task; after a completed handover the retrieval route can be deleted at essentially no cost in
+accuracy. This repository contains the experiments behind every reported result.
 
-## Repository map
+## Layout
 
 ```text
 experiments/
-  core/                 symbolic main suite
-  visual/               final MNIST + CIFAR-10 replications
-  large_scale/          cleaned final large-scale boundary protocol
-  appendix_d_mqar/      fused MQAR
-  appendix_e_falcon_h1/ pretrained Falcon-H1 measurement
-  appendix_g_fusion/    non-additive / pre-fusion check
-  appendix_n_attribution/
-  appendix_o_gpt2_ioi/
-  appendix_p_controls/
-  appendix_q_worm_vsr/
-  pilots/               follow-up / non-paper experiments
-results/                 raw symbolic data + selected reported/result tables
-figures/                 paper-useful figures supplied with the runs
+  core/                 symbolic suite: setup, metrics, pricing, and most main-text results
+  visual/               MNIST and CIFAR-10 eight-seed replications
+  large_scale/          19.77M-parameter boundary test and route deletion
+  appendix_d_mqar/      fused MQAR hybrid
+  appendix_e_falcon_h1/ pretrained Falcon-H1 route measurement
+  appendix_f_mamba2/    pretrained Mamba-2 boundary and resampling diagnostic
+  appendix_g_fusion/    non-additive / pre-fusion readouts
+  appendix_n_attribution/  attribution-proxy crossing offsets
+  appendix_o_gpt2_ioi/  pretrained GPT-2 IOI measurement check
+  appendix_p_controls/  steering baselines and CRAM-style fidelity check
+  appendix_q_worm_vsr/  pretrained WorM VSR route-availability diagnostic
+  majority/             Majority task: a structurally distinct handover task
+  tinystories_lm/       TinyStories language-model extension (self-contained, with logs)
+  pilots/               exploratory and superseded notebooks; no paper result depends on these
+docs/                   paper-to-code map and reproducibility audit
+figures/                figures supplied with the runs
+results/                reported values preserved for experiments without code
 ```
 
-See `docs/PAPER_CODE_MAP.md` for the paper-to-code map and `docs/REPRODUCIBILITY_AUDIT.md` before making the repository public.
+`docs/PAPER_CODE_MAP.md` maps every paper section, table and figure to the file that produces
+it. Read `docs/REPRODUCIBILITY_AUDIT.md` before relying on any individual number: it lists what
+has been verified, several open mismatches between the code and the manuscript, and what cannot
+be checked from this release.
 
-## Quick start
+## Getting started
 
-- Core symbolic suite: `experiments/core/symbolic_main.ipynb`
-- MNIST final eight-seed replication: `experiments/visual/mnist_replication_8seed.ipynb`
-- CIFAR-10 final eight-seed replication: `experiments/visual/cifar10_replication_8seed.ipynb`
-- Large-scale test: `experiments/large_scale/large_scale_boundary_clean.ipynb`
+```bash
+pip install -r requirements.txt
+```
 
-Use smoke/short presets first where the notebook provides them. The raw symbolic JSONL/CSV stores and supplied figures are included so tables/figures can be regenerated without retraining every run.
+The fastest way to see a real result is the TinyStories extension, which ships its logs and
+rebuilds every number and its figure on CPU in under a minute:
 
-## Missing code
+```bash
+cd experiments/tinystories_lm
+python analyze.py --out results --check
+```
 
-The only paper-reported implementations not present in the supplied source are:
+For the training experiments, open a notebook and run it top to bottom. Each one selects its
+scale with a `PRESET` variable at the top; start with `PRESET = "smoke"` to check the pipeline
+before committing to `"full"`, which reproduces the paper numbers. Most notebooks also have a
+`RUN` dictionary that switches individual experiment blocks on and off.
 
-- delayed attention baseline
-- weight-decay baseline
-- L1 retrieval-penalty baseline
+Entry points:
 
-Their reported Table 22 values are preserved in `results/appendix_p/table22_reported.csv`. All other paper components are represented by supplied code or by the cleaned/reorganized versions of that supplied code; see `docs/PAPER_CODE_MAP.md` and the audit notes for provenance/version details.
+| Experiment | File |
+| --- | --- |
+| Symbolic suite (most main-text results) | `experiments/core/symbolic_main.ipynb` |
+| MNIST / CIFAR-10 replications | `experiments/visual/*_replication_8seed.ipynb` |
+| Large-scale boundary test and deletion | `experiments/large_scale/large_scale_boundary_clean.ipynb` |
+| Majority task | `experiments/majority/majority_handover.ipynb` |
+| TinyStories language model | `experiments/tinystories_lm/` |
 
-## Large files
+## Results, storage and compute
 
-Model checkpoints are intentionally excluded. The supplied 75MB Mamba checkpoint archive is not committed; the pretrained-model notebooks download/load their upstream model and regenerate local checkpoints.
+Tasks are generated online from fixed seeds; no dataset is bundled. Notebooks write
+append-only JSONL/CSV stores and rebuild their tables and figures from them, so an interrupted
+run resumes instead of retraining. Results are written to `results/` by default; set
+`RESULTS_DIR` to put them elsewhere.
 
-## Double-blind review
+**The notebooks are released without saved outputs**, so nothing here proves a number came from
+this version of the code — re-running is the only check. The exception is
+`experiments/tinystories_lm/`, which includes the evaluation logs of all 29 runs.
 
-Before sending a repository URL to ICLR, publish from an anonymous/non-identifying account and inspect Git history, repository ownership, issue history, notebook outputs, and external Drive/Hugging Face paths for identifying information.
+A GPU is needed in practice: the symbolic suite is 14.4 GPU-hours on a T4, and the TinyStories
+experiments are about 17.6. Smoke presets run in minutes. These notebooks download public
+models and datasets on first use: MNIST and CIFAR-10 (torchvision), WikiText-2 and TinyStories,
+GPT-2, Falcon-H1, Mamba-2, and the WorM pretrained checkpoints. Model checkpoints are not
+committed.
+
+## Known gaps
+
+Three baselines in the steering comparison — delayed attention, weight decay, and the L1
+retrieval penalty — have no implementation here. Their reported values are preserved with
+provenance in `results/appendix_p/table22_reported.csv`. The audit lists the remaining open
+mismatches.
+
+## License
+
+MIT, see `LICENSE`.

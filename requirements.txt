@@ -1,11 +1,15 @@
-numpy
-pandas
-matplotlib
-scipy
-scikit-learn
-torch
-torchvision
-transformers
-datasets
-accelerate
-# Some Mamba notebooks additionally require GPU-compatible mamba-ssm / causal-conv1d builds.
+# Paper runs: Python 3.12.13, PyTorch 2.10.0+cu128, single NVIDIA Tesla T4.
+# Lower bounds are what the code needs; the versions above are what produced the results.
+numpy>=1.26
+pandas>=2.0
+matplotlib>=3.7
+scipy>=1.11
+torch>=2.3
+torchvision>=0.18          # MNIST / CIFAR-10 in the visual replications
+transformers>=4.44         # Falcon-H1, Mamba-2, GPT-2 (pretrained diagnostics)
+datasets>=2.19             # WikiText-2, TinyStories
+gdown>=5.0                 # WorM pretrained checkpoints (Appendix Q)
+
+# Optional, only for the pretrained Mamba-2 diagnostics (Appendix F).
+# These need GPU-specific builds and are not installable everywhere:
+#   pip install mamba-ssm causal-conv1d

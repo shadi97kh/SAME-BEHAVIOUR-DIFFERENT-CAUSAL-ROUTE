@@ -1,0 +1,12 @@
+{
+ "cond": "c64",
+ "seed": 2,
+ "matched_arm": "late0.1",
+ "beta": null,
+ "target_share": 0.12021742038094915,
+ "ppl": 10.968998351131429,
+ "copy_acc": 0.669752164825321,
+ "hard_acc": 0.5177970177970178,
+ "share_c": 0.1202177779743405,
+ "note": "exported from the paper run; beta and loss were not logged"
+}

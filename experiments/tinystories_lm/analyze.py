@@ -1,4 +1,4 @@
-"""Rebuild every TinyStories table, number and figure in Appendix R from the run logs (CPU only).
+"""Rebuild every TinyStories table, number and figure in Appendix S from the run logs (CPU only).
 
     python analyze.py --out results           # the released logs from the paper runs
     python analyze.py --out runs --check      # your own re-run, compared against the paper numbers

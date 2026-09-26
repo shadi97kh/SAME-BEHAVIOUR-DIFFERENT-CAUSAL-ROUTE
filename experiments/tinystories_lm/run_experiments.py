@@ -1,4 +1,4 @@
-"""Run every TinyStories experiment reported in Appendix R.
+"""Run every TinyStories experiment reported in Appendix S.
 
 Jobs run one per GPU as separate processes. Finished jobs are skipped and interrupted jobs resume
 from their last 1,000-step checkpoint, so the script can simply be re-run after a disconnect.

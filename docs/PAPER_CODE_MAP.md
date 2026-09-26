@@ -33,16 +33,8 @@ every table and figure from that store.
 | App O pretrained GPT-2 IOI | `experiments/appendix_o_gpt2_ioi/gpt2_ioi_dissociation.ipynb` | set `MODEL_NAME` for Small / Medium |
 | App P baselines, CRAM fidelity | `experiments/appendix_p_controls/`, `results/appendix_p/table22_reported.csv` | three baselines have **no code**; see below |
 | App Q pretrained WorM VSR | `experiments/appendix_q_worm_vsr/` | `worm_vsr_diagnostic.ipynb` imports setup from `worm_vsr_setup.ipynb` |
-
-## Not in the submitted manuscript
-
-These are complete, self-contained experiments that the current manuscript draft does not
-yet reference. Both describe themselves as "Appendix R"; the manuscript ends at Appendix Q.
-
-| Experiment | File | Status |
-| --- | --- | --- |
-| Majority: a structurally distinct handover task | `experiments/majority/majority_handover.ipynb` | reproduces Tables R1–R6 and Figure R1 of a newer draft |
-| TinyStories language-model extension | `experiments/tinystories_lm/` | self-contained package **with released logs**; `python analyze.py --out results --check` rebuilds every number on CPU |
+| App R Majority (structurally distinct task) | `experiments/majority/majority_handover.ipynb` | |
+| App S TinyStories language-model extension | `experiments/tinystories_lm/` | ships its logs; `python analyze.py --out results --check` rebuilds every reported number on CPU |
 
 ## Missing code
 

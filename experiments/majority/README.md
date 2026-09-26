@@ -10,6 +10,3 @@ from `experiments/core/symbolic_main.ipynb`.
 
 Set `PRESET` at the top: `"smoke"` (about 5 minutes) to check the pipeline, `"full"` for the
 reported numbers. `RESUME = True` skips work already stored on disk.
-
-**Note:** this notebook describes itself as Appendix R, which the current manuscript draft
-does not yet contain. See `docs/PAPER_CODE_MAP.md`.

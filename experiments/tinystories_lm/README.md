@@ -1,6 +1,6 @@
-# Same Behaviour, Different Causal Route: natural-language extension (Appendix R)
+# Same Behaviour, Different Causal Route: natural-language extension (Appendix S)
 
-Code, logs and analysis for the TinyStories language-model experiments in Appendix R of
+Code, logs and analysis for the TinyStories language-model experiments in Appendix S of
 *Same Behaviour, Different Causal Route: Post-Convergence Steering in Recurrent–Attention Hybrids*
 (ICLR 2027 submission, anonymous).
 
@@ -18,7 +18,7 @@ Retrieval never becomes deletable (0 of 9 priced runs), and a matched post-hoc a
 | path | purpose |
 |---|---|
 | `lh.py` | model, data pipeline, training (resumable), metrics; one job per process |
-| `run_experiments.py` | schedules every run reported in Appendix R, one job per GPU, resumable |
+| `run_experiments.py` | schedules every run reported in Appendix S, one job per GPU, resumable |
 | `posthoc.py` | matched post-hoc attenuation control |
 | `analyze.py` | rebuilds every table, number and the figure from the logs (CPU only) |
 | `notebooks/reproduce_tinystories.ipynb` | the same pipeline as a notebook (Kaggle / Colab friendly) |
@@ -62,7 +62,7 @@ their last 1,000-step checkpoint.
 Jobs are distributed over all visible GPUs. The paper used two Tesla T4s (fp16 mixed precision); on GPUs with bf16
 support the code uses bf16 automatically, which can change results slightly.
 
-## Protocol (details in Appendix R)
+## Protocol (details in Appendix S)
 
 - **Data.** First 400,000 TinyStories stories, GPT-2 tokeniser, vocabulary restricted to the 8,192 most frequent tokens
   (token coverage 99.79%, 89.9M tokens); 2% held out. `run_experiments.py --stage prepare` checks these numbers.

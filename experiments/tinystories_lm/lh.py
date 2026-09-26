@@ -1,6 +1,6 @@
 """Route handover in a from-scratch recurrent-attention language model on TinyStories.
 
-Core library for the natural-language extension (Appendix R). One training job per process:
+Core library for the natural-language extension (Appendix S). One training job per process:
 
     python lh.py free    --ctx 64 --dh 512 --seed 0   # free hybrid (lambda = 0), trained to plateau
     python lh.py reconly --ctx 64 --dh 512 --seed 0   # recurrent-only screen model

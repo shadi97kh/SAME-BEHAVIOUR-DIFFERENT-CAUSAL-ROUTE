@@ -1,4 +1,4 @@
-"""Matched post-hoc attenuation control (Appendix R).
+"""Matched post-hoc attenuation control (Appendix S).
 
 Scales the never arm's retrieval logits by a constant beta, without any training, so that its
 retrieval contribution share equals the late arm's share, then evaluates the scaled model.

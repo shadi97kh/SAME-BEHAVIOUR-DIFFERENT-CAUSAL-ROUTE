@@ -9,10 +9,10 @@ every table and figure from that store.
 | --- | --- | --- |
 | §3 setup, metrics `D_h`/`D_c`, share `S_c`, route pricing | `experiments/core/symbolic_main.ipynb` | model, task, price and measurement definitions used by every symbolic result |
 | §4.1 four-arm late switch (symbolic) | `experiments/core/symbolic_main.ipynb` (`switch` block) | λ=0.03, switch at step 2000, constant LR, 12k steps, loads 8 and 12 |
-| §4.2 matched post-hoc attenuation (MNIST, 8 seeds) | `experiments/visual/mnist_replication_8seed.ipynb` | α matched by bisection to the maintained-price reference |
-| §4.3 availability / retrieval dropout | `experiments/core/symbolic_main.ipynb` (`availability`) | no penalty term in the objective |
-| §4.4 long-horizon inversion | `experiments/visual/*_8seed.ipynb`, `experiments/core/symbolic_main.ipynb` (`inversion`) | 16k steps, constant LR, 8 seeds (visual) |
-| §4.5 + App B large-scale boundary test, deletion | `experiments/large_scale/large_scale_boundary_clean.ipynb` | see the parameter-count caveat in `REPRODUCIBILITY_AUDIT.md` |
+| §4.2 + App B large-scale boundary test, deletion | `experiments/large_scale/large_scale_boundary_clean.ipynb` | see the parameter-count caveat in `REPRODUCIBILITY_AUDIT.md` |
+| §4.3 matched post-hoc attenuation (MNIST, 8 seeds) | `experiments/visual/mnist_replication_8seed.ipynb` | α matched by bisection to the maintained-price reference |
+| §4.4 availability / retrieval dropout | `experiments/core/symbolic_main.ipynb` (`availability`) | no penalty term in the objective |
+| §4.5 long-horizon inversion | `experiments/visual/*_8seed.ipynb`, `experiments/core/symbolic_main.ipynb` (`inversion`) | 16k steps, constant LR, 8 seeds (visual) |
 | §5.1–5.2 viability screen, load–cost boundary | `experiments/core/symbolic_main.ipynb` (`free`, `free_long`, `boundary`), `experiments/visual/*` | |
 | §5.3 storage-width control | `experiments/core/symbolic_main.ipynb` (`width`) | `d_h` and `d_c` swept 32–160 at load 8 |
 | §5.4 optimisation scaffold | `experiments/core/symbolic_main.ipynb` (`anneal`, `ood_pairs`) | budgets are not matched; stated in App I |
